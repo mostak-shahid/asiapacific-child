@@ -12,7 +12,7 @@ function map_fnc ($page_details) {
 
 add_action( 'wp_head', 'remove_theme_actions' );
 function remove_theme_actions () {
-    remove_action( 'action_after_gallery', 'gallery_link_func', 1 );
+    // remove_action( 'action_after_gallery', 'gallery_link_func', 1 );
     remove_action( 'action_above_header', 'small_device_logo_fnc' );
 }
 add_action( 'action_before_banner_title', 'banner_layout_start', 99, 1 );

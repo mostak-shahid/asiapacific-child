@@ -35,6 +35,17 @@ do_action( 'action_avobe_times', $page_details );
 				<?php $categories = mos_get_terms ('class-category');?>
 
 
+				<?php 
+				function generate_func($value){
+					$class_cats = get_the_terms( $value, 'class-category' );
+					$n = 0;
+					?>
+					<span class="table-span"><?php echo get_post_meta( $value, '_mosacademy_child_calass_start', true ) ?>-<?php echo get_post_meta( $value, '_mosacademy_child_calass_end', true ) ?><br><strong><?php echo get_the_title( $value ) ?></strong><br><strong><?php foreach ($class_cats as $class_cat){echo $class_cat->name;if($n) echo ', '; $n++;}?></strong></span>
+					<?php
+				} 
+				?>
+
+
 				<!-- Nav tabs -->
 				<ul class="nav justify-content-center">
 				<?php if (sizeof($categories)) : ?>
@@ -77,83 +88,91 @@ do_action( 'action_avobe_times', $page_details );
 						}
 						?>
 					<div id="all" class="container tab-pane active">
-						<div class="table-responsive">
-							<table class="table text-center">
-								<thead class="thead-dark">
-									<tr>
-										<th scope="col" style="width: 14.285714285%">Sunday</th>
-										<th scope="col" style="width: 14.285714285%">Monday</th>
-										<th scope="col" style="width: 14.285714285%">Tuesday</th>
-										<th scope="col" style="width: 14.285714285%">Wednesday</th>
-										<th scope="col" style="width: 14.285714285%">Thursday</th>
-										<th scope="col" style="width: 14.285714285%">Friday</th>
-										<th scope="col" style="width: 14.285714285%">Saturday</th>
-
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td>
-											<?php 
-											function generate_func($value){
-												$class_cats = get_the_terms( $value, 'class-category' );
-												$n = 0;
-												?>
-												<span class="table-span"><?php echo get_post_meta( $value, '_mosacademy_child_calass_start', true ) ?>-<?php echo get_post_meta( $value, '_mosacademy_child_calass_end', true ) ?><br><strong><?php echo get_the_title( $value ) ?></strong><br><strong><?php foreach ($class_cats as $class_cat){echo $class_cat->name;if($n) echo ', '; $n++;}?></strong></span>
-												<?php
-											} 
-											?>
-											<?php if ($sun) : ?>
-												<?php foreach ($sun as $value) : ?>
-													<?php generate_func($value) ?>
-												<?php endforeach; ?>
-											<?php endif; ?>
-										</td>
-										<td>
-											<?php if ($mon) : ?>
-												<?php foreach ($mon as $value) : ?>
-													<?php generate_func($value) ?>
-												<?php endforeach; ?>
-											<?php endif; ?>
-										</td>
-										<td>
-											<?php if ($tue) : ?>
-												<?php foreach ($tue as $value) : ?>
-													<?php generate_func($value) ?>
-												<?php endforeach; ?>
-											<?php endif; ?>
-										</td>
-										<td>
-											<?php if ($wed) : ?>
-												<?php foreach ($wed as $value) : ?>
-													<?php generate_func($value) ?>
-												<?php endforeach; ?>
-											<?php endif; ?>
-										</td>
-										<td>
-											<?php if ($thu) : ?>
-												<?php foreach ($thu as $value) : ?>
-													<?php generate_func($value) ?>
-												<?php endforeach; ?>
-											<?php endif; ?>
-										</td>
-										<td>
-											<?php if ($fri) : ?>
-												<?php foreach ($fri as $value) : ?>
-													<?php generate_func($value) ?>
-												<?php endforeach; ?>
-											<?php endif; ?>
-										</td>
-										<td>
-											<?php if ($sat) : ?>
-												<?php foreach ($sat as $value) : ?>
-													<?php generate_func($value) ?>
-												<?php endforeach; ?>
-											<?php endif; ?>
-										</td>
-									</tr>
-								</tbody>
-							</table>
+						<div class="row text-center font-weight-bold">
+							<div class="col-md p-md-0 bg-light text-dark">
+								<div class="p-3 bg-dark text-white">Sunday</div>
+								<div class="p-3">
+									<?php if ($sun) : ?>
+										<?php foreach ($sun as $value) : ?>
+											<?php generate_func($value) ?>
+										<?php endforeach; ?>
+									<?php else : ?>
+										<span class="table-span">No Classes</span>
+									<?php endif; ?>
+								</div>
+							</div>
+							<div class="col-md p-md-0 bg-light text-dark">
+								<div class="p-3 bg-dark text-white">Monday</div>
+								<div class="p-3">
+									<?php if ($mon) : ?>
+										<?php foreach ($mon as $value) : ?>
+											<?php generate_func($value) ?>
+										<?php endforeach; ?>
+									<?php else : ?>
+										<span class="table-span">No Classes</span>
+									<?php endif; ?>
+								</div>
+							</div>
+							<div class="col-md p-md-0 bg-light text-dark">
+								<div class="p-3 bg-dark text-white">Tuesday</div>
+								<div class="p-3">
+									<?php if ($tue) : ?>
+										<?php foreach ($tue as $value) : ?>
+											<?php generate_func($value) ?>
+										<?php endforeach; ?>
+									<?php else : ?>
+										<span class="table-span">No Classes</span>
+									<?php endif; ?>
+								</div>
+							</div>
+							<div class="col-md p-md-0 bg-light text-dark">
+								<div class="p-3 bg-dark text-white">Wednesday</div>
+								<div class="p-3">
+									<?php if ($wed) : ?>
+										<?php foreach ($wed as $value) : ?>
+											<?php generate_func($value) ?>
+										<?php endforeach; ?>
+									<?php else : ?>
+										<span class="table-span">No Classes</span>
+									<?php endif; ?>
+								</div>
+							</div>
+							<div class="col-md p-md-0 bg-light text-dark">
+								<div class="p-3 bg-dark text-white">Thursday</div>
+								<div class="p-3">
+									<?php if ($thu) : ?>
+										<?php foreach ($thu as $value) : ?>
+											<?php generate_func($value) ?>
+										<?php endforeach; ?>
+									<?php else : ?>
+										<span class="table-span">No Classes</span>
+									<?php endif; ?>
+								</div>
+							</div>
+							<div class="col-md p-md-0 bg-light text-dark">
+								<div class="p-3 bg-dark text-white">Friday</div>
+								<div class="p-3">
+									<?php if ($fri) : ?>
+										<?php foreach ($fri as $value) : ?>
+											<?php generate_func($value) ?>
+										<?php endforeach; ?>
+									<?php else : ?>
+										<span class="table-span">No Classes</span>
+									<?php endif; ?>
+								</div>
+							</div>
+							<div class="col-md p-md-0 bg-light text-dark">
+								<div class="p-3 bg-dark text-white">Saturday</div>
+								<div class="p-3">
+									<?php if ($sat) : ?>
+										<?php foreach ($sat as $value) : ?>
+											<?php generate_func($value) ?>
+										<?php endforeach; ?>
+									<?php else : ?>
+										<span class="table-span">No Classes</span>
+									<?php endif; ?>
+								</div>
+							</div>
 						</div>
 					</div>
 					<?php foreach ($categories as $category) : ?>
@@ -188,74 +207,91 @@ do_action( 'action_avobe_times', $page_details );
 						}
 						?>
 					<div id="class-cat-<?php echo $category["term_id"] ?>" class="container tab-pane">
-						<div class="table-responsive">
-							<table class="table text-center">
-								<thead class="thead-dark">
-									<tr>
-										<th scope="col" style="width: 14.285714285%">Sunday</th>
-										<th scope="col" style="width: 14.285714285%">Monday</th>
-										<th scope="col" style="width: 14.285714285%">Tuesday</th>
-										<th scope="col" style="width: 14.285714285%">Wednesday</th>
-										<th scope="col" style="width: 14.285714285%">Thursday</th>
-										<th scope="col" style="width: 14.285714285%">Friday</th>
-										<th scope="col" style="width: 14.285714285%">Saturday</th>
-
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td>
-											<?php if ($sun) : ?>
-												<?php foreach ($sun as $value) : ?>
-													<span class="table-span"><?php echo get_post_meta( $value, '_mosacademy_child_calass_start', true ) ?>-<?php echo get_post_meta( $value, '_mosacademy_child_calass_end', true ) ?><br><strong><?php echo get_the_title( $value ) ?></strong></span>
-												<?php endforeach; ?>
-											<?php endif; ?>
-										</td>
-										<td>
-											<?php if ($mon) : ?>
-												<?php foreach ($mon as $value) : ?>
-													<span class="table-span"><?php echo get_post_meta( $value, '_mosacademy_child_calass_start', true ) ?>-<?php echo get_post_meta( $value, '_mosacademy_child_calass_end', true ) ?><br><strong><?php echo get_the_title( $value ) ?></strong></span>
-												<?php endforeach; ?>
-											<?php endif; ?>
-										</td>
-										<td>
-											<?php if ($tue) : ?>
-												<?php foreach ($tue as $value) : ?>
-													<span class="table-span"><?php echo get_post_meta( $value, '_mosacademy_child_calass_start', true ) ?>-<?php echo get_post_meta( $value, '_mosacademy_child_calass_end', true ) ?><br><strong><?php echo get_the_title( $value ) ?></strong></span>
-												<?php endforeach; ?>
-											<?php endif; ?>
-										</td>
-										<td>
-											<?php if ($wed) : ?>
-												<?php foreach ($wed as $value) : ?>
-													<span class="table-span"><?php echo get_post_meta( $value, '_mosacademy_child_calass_start', true ) ?>-<?php echo get_post_meta( $value, '_mosacademy_child_calass_end', true ) ?><br><strong><?php echo get_the_title( $value ) ?></strong></span>
-												<?php endforeach; ?>
-											<?php endif; ?>
-										</td>
-										<td>
-											<?php if ($thu) : ?>
-												<?php foreach ($thu as $value) : ?>
-													<span class="table-span"><?php echo get_post_meta( $value, '_mosacademy_child_calass_start', true ) ?>-<?php echo get_post_meta( $value, '_mosacademy_child_calass_end', true ) ?><br><strong><?php echo get_the_title( $value ) ?></strong></span>
-												<?php endforeach; ?>
-											<?php endif; ?>
-										</td>
-										<td>
-											<?php if ($fri) : ?>
-												<?php foreach ($fri as $value) : ?>
-													<span class="table-span"><?php echo get_post_meta( $value, '_mosacademy_child_calass_start', true ) ?>-<?php echo get_post_meta( $value, '_mosacademy_child_calass_end', true ) ?><br><strong><?php echo get_the_title( $value ) ?></strong></span>
-												<?php endforeach; ?>
-											<?php endif; ?>
-										</td>
-										<td>
-											<?php if ($sat) : ?>
-												<?php foreach ($sat as $value) : ?>
-													<span class="table-span"><?php echo get_post_meta( $value, '_mosacademy_child_calass_start', true ) ?>-<?php echo get_post_meta( $value, '_mosacademy_child_calass_end', true ) ?><br><strong><?php echo get_the_title( $value ) ?></strong></span>
-												<?php endforeach; ?>
-											<?php endif; ?>
-										</td>
-									</tr>
-								</tbody>
-							</table>
+						<div class="row text-center font-weight-bold">
+							<div class="col-md p-md-0 bg-light text-dark">
+								<div class="p-3 bg-dark text-white">Sunday</div>
+								<div class="p-3">
+									<?php if ($sun) : ?>
+										<?php foreach ($sun as $value) : ?>
+											<?php generate_func($value) ?>
+										<?php endforeach; ?>
+									<?php else : ?>
+										<span class="table-span">No Classes</span>
+									<?php endif; ?>
+								</div>
+							</div>
+							<div class="col-md p-md-0 bg-light text-dark">
+								<div class="p-3 bg-dark text-white">Monday</div>
+								<div class="p-3">
+									<?php if ($mon) : ?>
+										<?php foreach ($mon as $value) : ?>
+											<?php generate_func($value) ?>
+										<?php endforeach; ?>
+									<?php else : ?>
+										<span class="table-span">No Classes</span>
+									<?php endif; ?>
+								</div>
+							</div>
+							<div class="col-md p-md-0 bg-light text-dark">
+								<div class="p-3 bg-dark text-white">Tuesday</div>
+								<div class="p-3">
+									<?php if ($tue) : ?>
+										<?php foreach ($tue as $value) : ?>
+											<?php generate_func($value) ?>
+										<?php endforeach; ?>
+									<?php else : ?>
+										<span class="table-span">No Classes</span>
+									<?php endif; ?>
+								</div>
+							</div>
+							<div class="col-md p-md-0 bg-light text-dark">
+								<div class="p-3 bg-dark text-white">Wednesday</div>
+								<div class="p-3">
+									<?php if ($wed) : ?>
+										<?php foreach ($wed as $value) : ?>
+											<?php generate_func($value) ?>
+										<?php endforeach; ?>
+									<?php else : ?>
+										<span class="table-span">No Classes</span>
+									<?php endif; ?>
+								</div>
+							</div>
+							<div class="col-md p-md-0 bg-light text-dark">
+								<div class="p-3 bg-dark text-white">Thursday</div>
+								<div class="p-3">
+									<?php if ($thu) : ?>
+										<?php foreach ($thu as $value) : ?>
+											<?php generate_func($value) ?>
+										<?php endforeach; ?>
+									<?php else : ?>
+										<span class="table-span">No Classes</span>
+									<?php endif; ?>
+								</div>
+							</div>
+							<div class="col-md p-md-0 bg-light text-dark">
+								<div class="p-3 bg-dark text-white">Friday</div>
+								<div class="p-3">
+									<?php if ($fri) : ?>
+										<?php foreach ($fri as $value) : ?>
+											<?php generate_func($value) ?>
+										<?php endforeach; ?>
+									<?php else : ?>
+										<span class="table-span">No Classes</span>
+									<?php endif; ?>
+								</div>
+							</div>
+							<div class="col-md p-md-0 bg-light text-dark">
+								<div class="p-3 bg-dark text-white">Saturday</div>
+								<div class="p-3">
+									<?php if ($sat) : ?>
+										<?php foreach ($sat as $value) : ?>
+											<?php generate_func($value) ?>
+										<?php endforeach; ?>
+									<?php else : ?>
+										<span class="table-span">No Classes</span>
+									<?php endif; ?>
+								</div>
+							</div>
 						</div>
 					</div>
 					<?php endforeach; ?>
